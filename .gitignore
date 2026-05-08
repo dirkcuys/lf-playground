@@ -1,3 +1,4 @@
 .dockerenv
 .bundler
 _site
+node_modules
