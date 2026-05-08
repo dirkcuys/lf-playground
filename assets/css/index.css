@@ -1,0 +1,43 @@
+---
+---
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+nav a, nav summary{
+  @apply font-sans;
+  @apply uppercase;
+  @apply text-[11px];
+  @apply font-bold;
+  @apply tracking-widest;
+  @apply text-[#1a1a1a];
+  @apply py-[18px];
+  @apply px-3.5;
+  @apply cursor-pointer;
+  @apply whitespace-nowrap;
+  @apply hover:text-[#7d1b6e];
+  @apply transition-colors;
+  @apply bg-transparent;
+  @apply border-none;
+}
+
+nav details > ul {
+    z-index: 9999;
+}
+
+@utility btn {
+  @apply rounded-full;
+  @apply font-sans;
+  @apply uppercase;
+  @apply font-bold;
+  @apply text-white;
+  @apply bg-[#7d1b6e];
+  @apply border-none;
+  @apply text-[11px];
+  @apply tracking-wider;
+  @apply py-2 px-[18px];
+  @apply cursor-pointer;
+  @apply hover:bg-[#651659];
+  @apply transition-colors;
+}
+

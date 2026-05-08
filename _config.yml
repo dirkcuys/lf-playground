@@ -15,3 +15,10 @@ contentful:
           embedded-entry-block: EmbeddedEntryBlockRenderer
           embedded-asset-block: EmbeddedAssetBlockRenderer
 
+plugins:
+  - jekyll-postcss-v2
+
+postcss:
+  cache: false
+
+

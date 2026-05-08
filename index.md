@@ -1,4 +1,5 @@
 ---
+layout: tailwind
 ---
 
 # This is not a real blog
