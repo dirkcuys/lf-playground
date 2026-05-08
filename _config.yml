@@ -1,0 +1,17 @@
+contentful:
+  spaces:
+    - post:
+        space: ENV_CONTENTFUL_SPACE_ID
+        access_token: ENV_CONTENTFUL_ACCESS_TOKEN
+        base_path: ./
+        destination: /contentful
+        all_entries: true
+        cda_query:
+          content_type: post
+        client_options:
+          max_include_resolution_depth: 2
+          reuse_entries: false
+        rich_text_mappings:
+          embedded-entry-block: EmbeddedEntryBlockRenderer
+          embedded-asset-block: EmbeddedAssetBlockRenderer
+
