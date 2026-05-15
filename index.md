@@ -1,5 +1,5 @@
 ---
-layout: tailwind
+layout: landing
 ---
 
 # This is not a real blog

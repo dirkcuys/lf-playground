@@ -1,33 +1,39 @@
-<nav class="max-lg:collapse bg-base-200 lg:mb-48 shadow-sm w-full rounded-md">
+{% assign page_data = site.data.contentful.index.index | first %}
+{% assign topNav = page_data.top_navigation %}
+
+<nav class="max-lg:collapse border-b border-[#e0e0e0] bg-white shadow-sm w-full rounded-md">
   <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
   <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block"></label>
-  <div class="collapse-title navbar">
+  <div class="collapse-title navbar px-4 py-0">
     <div class="navbar-start">
       <div class="flex items-center gap-2 md:gap-3 py-3 pr-3 md:pr-7 mr-2 border-r border-[#e0e0e0]">
         <img src="/assets/img/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-7 md:h-9 w-auto">
       </div>
 
       <ul class="menu menu-horizontal px-1 hidden lg:flex">
-        <li>
-          <details>
-            <summary>Who we are</summary>
-            <ul class="bg-base-100 rounded-t-none p-2">
-              <li><a>Link 1</a></li>
-              <li><a>Link 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details>
-            <summary>Programs</summary>
-            <ul class="bg-base-100 rounded-t-none p-2">
-              <li><a>Link 1</a></li>
-              <li><a>Link 2</a></li>
-            </ul>
-          </details>
-        </li>
-        <li><a>Blog</a></li>
-        <li><a>Events</a></li>
+        {% for nav in topNav %}
+        {% if nav.children %}
+          <li>
+            <details>
+              <summary>{{nav.title}}</summary>
+              <ul class="bg-base-100 rounded-t-none p-2">
+                {% for subnav in nav.children %}
+                  {% comment %}search for relevant item{% endcomment %}
+                  {% assign nav_id = subnav.sys.id %}
+                  {% for search_nav in site.data.contentful.nav.navigation %}
+                    {% if search_nav.sys.id == nav_id %}
+                      {% assign nav_item = search_nav %}
+                    {% endif %}
+                  {% endfor %}
+                  <li><a href="{{nav_item.link}}">{{nav_item.title}}</a></li>
+                {% endfor %}
+              </ul>
+            </details>
+          </li>
+        {% else %}
+          <li><a href="{{nav.link}}">{{nav.title}}</a></li>
+        {% endif %}
+        {% endfor %}
       </ul>
 
     </div>
