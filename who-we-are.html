@@ -87,12 +87,30 @@ layout: tailwind
  
     {% assign community_alumni_cards = people | where: 'type', 'Community Alumni' | sort_natural: "last_name" %}
     {% if community_alumni_cards and community_alumni_cards.size != 0 %}
-        {% include components/minimal-card-layout.html
-          cards=community_alumni_cards
-          cards_heading="Community Alumni"
-          cards_type="people_cards"
-          cards_alumni=true
-        %}
+
+      {% assign cards=community_alumni_cards %}
+      {% assign cards_heading="Community Alumni"%}
+      {% assign cards_type="people_cards"%}
+      {% assign cards_alumni=true %}
+      <div class="row expanded row--thin">
+        <div class="column large-12 small-12 card-section-heading">
+          <h2 class="text-3xl pt-18 pb-6 font-semibold">
+            {{ cards_heading }}
+          </h2>
+        </div>
+        <div class="grid lg:grid-cols-4">
+          {% for card in cards %}
+          <div class="flex flex-col items-center text-center">
+            <span class="block my-8 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+            <a href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
+              <h4 class="text-xl font-semibold mb-2">{{ card.display_name }}</h4>
+            </a>
+            <p class="">{{ card.title }}</p>
+            <p class="card__affiliation">{{ card.affiliation }}</p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
     {% endif %}
 
   </section>
