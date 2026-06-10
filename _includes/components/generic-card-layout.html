@@ -9,12 +9,12 @@
 <div class="">
   {% if cards %}
   <div class="column large-12 small-12 card-section-heading">
-    <h2>{{ cards_heading }}</h2>
+    <h2 class="text-3xl pt-18 pb-6 font-semibold">{{ cards_heading }}</h2>
     {% if cards_link_to and cards.link_to.size != 0 %}
     <a class="link link--arrow" href="{{ cards_link_to | relative_url }}">{{cards_link_text}}</a>
     {% endif %}
   </div>
-  <div class="cards-wrapper grid grid-cols-4">
+  <div class="grid lg:grid-cols-3 xl:grid-cols-4 gap-4">
     {% for card in cards %}
       {% if card.sys.content_type_id == 'news' %}
         {% comment %} news = blog post {% endcomment %}
@@ -33,18 +33,17 @@
         </div>
       {% elsif card.sys.content_type_id == 'product' %}
         {% comment %} product = publication {% endcomment %}
-        <div class="card card--lfcard">
-          <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'publications/' | relative_url }}">
-            <div class="card__icon" style="background-image: url({{ card.cover_image.url }})"></div>
-            <div class="card__detail">
-              <span class="card__title">{{ card.title }}</span>
-              <span class="card__subtitle">{{ card.short_description }}</span>
-              {% assign author = card.full_author %}
-              {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
-              <div class="card__author">{{ subline_split }}</div>
-            </div>
-          </a>
-        </div>
+        <a class="flex flex-col items-center text-center bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0] card-link-wrapper" href="{{ card.pretty_url | prepend: 'publications/' | relative_url }}">
+          <img 
+            src="{{ card.cover_image.url }}"
+            class="h-8/10"
+          />
+          <span class="card__title">{{ card.title }}</span>
+          <span class="card__subtitle">{{ card.short_description }}</span>
+          {% assign author = card.full_author %}
+          {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
+          <div class="card__author">{{ subline_split }}</div>
+        </a>
       {% elsif card.sys.content_type_id == 'event' %}
         {% comment %} product = publication {% endcomment %}
         <div class="card card--lfcard">
@@ -145,26 +144,19 @@
     <a class="link link--arrow" href="{{ cards_link_to | relative_url }}">{{cards_link_text}}</a>
     {% endif %}
   </div>
-  <div class="grid grid-cols-4 gap-6">
+  <div class="grid lg:grid-cols-3 xl:grid-cols-4 gap-4">
     {% for card in cards %}
-    <div class="card card--people bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0]">
-      <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
-        <div class="card__avatar-wrapper">
-          <div class="flex flex-col items-center">
-            <img
-              class="w-36 h-36 rounded-full object-cover"
-              src="{{card.photo.url}}"
-              alt="{{card.display_name | escape}} Image"
-            />
-          </div>
-          <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
-        </div>
-        <div class="card__detail">
-          <span class="card__name">{{ card.display_name }}</span>
-          <span class="card__title">{{ card.title }}</span>
-        </div>
-      </a>
-    </div>
+    <a class="flex flex-col items-center text-center bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0] card-link-wrapper" href="{{ card.pretty_url | prepend: '/people/' | relative_url }}">
+      <img
+        class="w-44 h-44 rounded-full object-cover"
+        src="{{card.photo.url}}"
+        alt="{{card.display_name | escape}} Image"
+      />
+      <div class="bar" style="background-image: url('/images/bar-p.svg')"></div>
+      <span class="block my-10 w-20 md:w-32 h-2 md:h-2 bg-gradient-to-r from-[#7d1b6e] to-transparent"></span>
+      <h4 class="text-xl font-semibold mb-3">{{ card.display_name }}</h4>
+      <p class="">{{ card.title }}</p>
+    </a>
     {% endfor %}
   </div>
 </div>

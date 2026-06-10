@@ -51,3 +51,8 @@ page_gen:
     template: 'announcement'
     name: 'pretty_url'
     dir: 'post'
+  - data: 'data.contentful.lf.people'
+    template: 'profile'
+    name: 'pretty_url'
+    dir: 'people'
+
