@@ -8,8 +8,11 @@
   <a class="card-link-wrapper" href="{{card.pretty_url | prepend: '/events/' | relative_url }}">
   {% endif %}
     <figure class="aspect-16/9">
-      <!--img src="{{ card.featured_image.url}})" /-->
-      <img src="https://placehold.co/600x400/png"/>
+      {% if card.featured_image %}
+      <img class="object-cover" src="{{ card.featured_image.url }}" />
+      {% else %}
+      <img class="object-cover" src="{{ include.default_image.url }}" alt="{{ include.default_image.description }}" />
+      {% endif %}
     </figure>
   </a>
     <div class="card-body">

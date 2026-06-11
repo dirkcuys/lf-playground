@@ -5,13 +5,13 @@ title: Library Futures Events
 
 {% assign page_data = site.data.contentful.lf.eventsPage | first %}
 
-<main>
-  <div class="grid grid-cols-2 gap-4 bg-gradient-to-br from-white via-[#faf9fb] to-white">
-    <div class="m-6">
-      <h1 class="text-4xl font-semibold mb-2">{{page.title}}</h1>
+<main class="">
+  <div class="px-24 py-22 grid grid-cols-2 gap-8 bg-gradient-to-br from-white via-[#faf9fb] to-white">
+    <div class="">
+      <h1 class="text-6xl font-semibold mb-2">{{page.title}}</h1>
       <p>Library Futures holds regular webinars, community calls, and in-person social events. Please join us in-person or online!</p>
     </div>
-    <div class="m-6">
+    <div class="">
       <h3 class="text-2xl font-semibold mb-2" >Featured Event</h3>
 
     {% assign event = page_data.featured_event %}
@@ -40,9 +40,9 @@ title: Library Futures Events
       </div>
     </div>
   </div>
-  <div class="m-6">
-    <h3 class="text-2xl font-semibold">Upcoming Events</h3>
-    <div class="grid grid-cols-4 gap-4">
+  <div class="p-24">
+    <h3 class="text-2xl font-semibold mt-6 mb-2">Upcoming Events</h3>
+    <div class="grid grid-cols-4 gap-6">
       {% assign events_sort_asc = site.data.contentful.lf.event | sort: "event_start"| slice: 3 %}
       {% for card in events_sort_asc %} 
         {% include components/card-event.html card=card event_type="upcoming" %} 
@@ -50,11 +50,11 @@ title: Library Futures Events
 
     </div>
 
-    <h3 class="text-2xl font-semibold">Past Events</h3>
-    <div class="grid grid-cols-4 gap-4">
+    <h3 class="text-2xl font-semibold mt-6 mb-2">Past Events</h3>
+    <div class="grid grid-cols-4 gap-6">
       {% assign events_sort_desc = site.data.contentful.lf.event | sort: "event_start" | reverse %}
       {% for card in events_sort_desc %}
-        {% include components/card-event.html card=card event_type="past" %}
+        {% include components/card-event.html card=card event_type="past" default_image=page_data.default_event_image %}
       {% endfor %}
     </div>
   </div>
