@@ -23,45 +23,44 @@ description: All the latest research, education, advocacy, and news from Library
 {% assign all_types = all_types | uniq | compact | sort %}
 
 <!-- LAYOUT 9: Lists  -->
-<main id="main" class="px-4 md:px-7 py-8 md:py-12 bg-white">
-    <section class="pb-6 md:pb-8 -mx-4 md:-mx-0 px-4 md:px-6 py-4 md:py-5">
-      <div class="column large-offset-2">
-        <h1 class="font-sans text-2xl md:text-3xl font-black uppercase text-[#1a1a1a]" >{{ page.title }}</h1>
+<main id="main" class="bg-white">
+  <section class="px-24 py-22">
+    <div class="column large-offset-2">
+      <h1 class="font-sans text-2xl md:text-6xl font-black capitalize text-[#1a1a1a]" >{{ page.title }}</h1>
 
-        {% include components/mobile-list-results.html class_name="engelberg-center-news-filter" %}
+      {% include components/mobile-list-results.html class_name="engelberg-center-news-filter" %}
 
-        <div class="bar"></div>
+      <div class="bar"></div>
 
-        <span class="search-title">Filters</span>
-        <button id="clear-filters" class="clear-filters">Clear all</button>
+      <span class="search-title">Filters</span>
+      <button id="clear-filters" class="clear-filters">Clear all</button>
 
-        <div class="dropdown-container">
-          <div class="dropdown-component">
-            {% include components/dropdown.html content=all_authors component_id="news-item-center-author"
-            component_name="news-item-center-author" component_default="All Authors"
-            component_label_class="visually-hidden" %}
-          </div>
+      <div class="dropdown-container">
+        <div class="dropdown-component">
+          {% include components/dropdown.html content=all_authors component_id="news-item-center-author"
+          component_name="news-item-center-author" component_default="All Authors"
+          component_label_class="visually-hidden" %}
         </div>
-      </div>
-    </section>
-    <div class="column list-container">
-      {% comment %}
-      {% include components/list-results.html %}
-      <div class="border-b border-[#e0e0e0] pb-6 md:pb-8 hover:bg-[#fafafa] transition-colors -mx-4 md:-mx-0 px-4 md:px-6 py-4 md:py-5 rounded-lg">
-        <h2>Posts</h2>
-        <button
-          id="date-sort"
-          type="button"
-          class="button__date-sort js-sort sort {{ class_names }}"
-          data-sort="timestamp"
-        >
-          Date
-        </button>
-      </div>
-      {% endcomment %}
-      <div class="list">
-        {% for news_item in news %} {% include components/news-list-item.html item=news_item %} {% endfor %}
       </div>
     </div>
   </section>
+  <div class="column list-container px-24">
+    {% comment %}
+    {% include components/list-results.html %}
+    <div class="border-b border-[#e0e0e0] pb-6 md:pb-8 hover:bg-[#fafafa] transition-colors -mx-4 md:-mx-0 px-4 md:px-6 py-4 md:py-5 rounded-lg">
+      <h2>Posts</h2>
+      <button
+        id="date-sort"
+        type="button"
+        class="button__date-sort js-sort sort {{ class_names }}"
+        data-sort="timestamp"
+      >
+        Date
+      </button>
+    </div>
+    {% endcomment %}
+    <div class="list">
+      {% for news_item in news %} {% include components/news-list-item.html item=news_item %} {% endfor %}
+    </div>
+  </div>
 </main>
