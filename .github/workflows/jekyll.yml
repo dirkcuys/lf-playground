@@ -46,7 +46,9 @@ jobs:
       - name: Get content from Contentful
         run: bundle exec jekyll contentful
         env:
-          JEKYLL_ENV: production  
+          JEKYLL_ENV: production
+          CONTENTFUL_SPACE_ID: ${{ secrets.CONTENTFUL_SPACE_ID }}
+          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
