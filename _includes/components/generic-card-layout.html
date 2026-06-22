@@ -14,48 +14,58 @@
     <a class="link link--arrow" href="{{ cards_link_to | relative_url }}">{{cards_link_text}}</a>
     {% endif %}
   </div>
-  <div class="grid lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
     {% for card in cards %}
       {% if card.sys.content_type_id == 'news' %}
         {% comment %} news = blog post {% endcomment %}
-        <div class="card card--lfcard">
-          <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'post/' | relative_url }}">
+          <a class="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="{{ card.pretty_url | prepend: 'post/' | relative_url }}">
             {% assign featuredImage = card.column_images | first %}
-            <div class="card__icon" style="background-image: url({{ featuredImage.url }})"></div>
-            <div class="card__detail">
-              <span class="card__title">{{ card.title }}</span>
+            <div class="aspect-16/9">
+              <img 
+                src="{{ featuredImage.url }}" 
+                class="object-cover w-full h-full object-cover" 
+              />
+            </div>
+            <div class="p-6 md:p-8">
+              <h4 class="text-xl font-semibold">{{ card.title }}</h4>
               <span class="card__subtitle">{{ card.short_description }}</span>
               {% assign author = card.full_author %}
               {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
               <div class="card__author">{{ subline_split }}</div>
             </div>
           </a>
-        </div>
       {% elsif card.sys.content_type_id == 'product' %}
         {% comment %} product = publication {% endcomment %}
-        <a class="flex flex-col items-center text-center bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-[#e0e0e0] card-link-wrapper" href="{{ card.pretty_url | prepend: 'publications/' | relative_url }}">
-          <img 
-            src="{{ card.cover_image.url }}"
-            class="h-8/10"
-          />
-          <span class="card__title">{{ card.title }}</span>
-          <span class="card__subtitle">{{ card.short_description }}</span>
-          {% assign author = card.full_author %}
-          {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
-          <div class="card__author">{{ subline_split }}</div>
+        <a class="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="{{ card.pretty_url | prepend: 'publications/' | relative_url }}">
+          <div class="aspect-16/9">
+            <img 
+              src="{{ card.cover_image.url }}"
+              class="object-cover w-full h-full object-cover" 
+            />
+          </div>
+          <div class="p-6 md:p-8">
+            <h4 class="text-xl font-semibold">{{ card.title }}</h4>
+            <span class="card__subtitle">{{ card.short_description }}</span>
+            {% assign author = card.full_author %}
+            {% assign subline_split = author | split: "](" | first | replace: "[", "" %}
+            <div class="card__author">{{ subline_split }}</div>
+          </div>
         </a>
       {% elsif card.sys.content_type_id == 'event' %}
         {% comment %} product = publication {% endcomment %}
-        <div class="card card--lfcard">
-          <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'events/' | relative_url }}">
-            <div class="card__icon" style="background-image: url({{ card.featured_image.url }})"></div>
-            <div class="card__detail">
-              <span class="card__title">{{ card.title }}</span>
-              <span class="card__subtitle">{{ card.short_description }}</span>
-              <div class="card__date">{{ card.event_start | date: "%B %d, %Y" }}</div>
+          <a class="flex flex-col items-center bg-white rounded-2xl shadow-lg border border-[#e0e0e0] overflow-hidden" href="{{ card.pretty_url | prepend: 'events/' | relative_url }}">
+            <div class="aspect-16/9">
+              <img 
+                src="{{ card.featured_image.url }}"
+                class="object-cover w-full h-full object-cover" 
+              />
+            </div>
+            <div class="p-6 md:p-8">
+              <h4 class="text-xl font-semibold">{{ card.title }}</h4>
+              <span>{{ card.short_description }}</span>
+              <div>{{ card.event_start | date: "%B %d, %Y" }}</div>
             </div>
           </a>
-        </div>
       {% elsif card.sys.content_type_id == 'people' %}
         <div class="card card--lfcard">
           <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'people/' | relative_url }}">
@@ -83,7 +93,7 @@
     {% endif %}
   </div>
   <div class="cards-wrapper">
-    {% for card in cards%}
+    {% for card in cards %}
     <div class="card card--research">
       <a class="card-link-wrapper" href="{{ card.pretty_url | prepend: 'outputs/' | relative_url }}">
         <div class="card__icon" style="background-image: url({{ card.cover_image.url }})"></div>

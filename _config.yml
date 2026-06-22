@@ -1,3 +1,8 @@
+exclude:
+  - node_modules
+  - src
+    
+
 contentful:
   spaces:
     - lf:
@@ -55,4 +60,22 @@ page_gen:
     template: 'profile'
     name: 'pretty_url'
     dir: 'people'
+  - data: 'data.contentful.lf.genericPage'
+    template: 'generic'
+    name: 'pretty_url'
+    dir: ''
+  - data: 'data.contentful.lf.event'
+    template: 'event'
+    name: 'pretty_url'
+    dir: 'events'
+    customSeoImage: 'seo_image'
+  - data: 'data.contentful.lf.product'
+    template: 'publication'
+    name: 'pretty_url'
+    dir: 'publications'
+    customSeoImage: 'seo_image'
+    customSeoDescription: 'seo_description'
+
+
+
 
