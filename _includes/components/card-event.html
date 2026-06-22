@@ -9,7 +9,7 @@
   {% endif %}
     <figure class="aspect-16/9">
       {% if card.featured_image %}
-      <img class="object-cover" src="{{ card.featured_image.url }}" />
+      <img class="w-full h-full object-cover" src="{{ card.featured_image.url }}" />
       {% else %}
       <img class="object-cover" src="{{ include.default_image.url }}" alt="{{ include.default_image.description }}" />
       {% endif %}

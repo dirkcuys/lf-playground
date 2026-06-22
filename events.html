@@ -36,7 +36,6 @@ title: Library Futures Events
 
         <a href="" class="uppercase">Event details →</a>
 
-
       </div>
     </div>
   </div>
@@ -45,7 +44,7 @@ title: Library Futures Events
     <div class="grid grid-cols-4 gap-6">
       {% assign events_sort_asc = site.data.contentful.lf.event | sort: "event_start"| slice: 3 %}
       {% for card in events_sort_asc %} 
-        {% include components/card-event.html card=card event_type="upcoming" %} 
+        {% include components/card-event.html card=card event_type="upcoming" default_image=page_data.default_event_image %} 
       {% endfor %}
 
     </div>
