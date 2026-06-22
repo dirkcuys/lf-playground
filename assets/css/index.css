@@ -43,9 +43,11 @@
 }
 */
 
+/*
 a {
     color: #7d1b6e;
 }
+*/
 
 nav a, nav summary{
   @apply font-sans;
@@ -68,6 +70,17 @@ nav details > ul {
     z-index: 9999;
 }
 
+@utility btn-outline {
+  @apply tracking-wider;
+  @apply border-[1.5px];
+  @apply border-[#1a1a1a];
+  @apply border-solid;
+  @apply bg-white;
+  @apply text-[#1a1a1a];
+  @apply hover:bg-[#1a1a1a];
+  @apply hover:text-white;
+}
+
 @utility btn {
   @apply rounded-full;
   @apply font-sans;
@@ -83,6 +96,7 @@ nav details > ul {
   @apply hover:bg-[#651659];
   @apply transition-colors;
 }
+
 
 #hero-body {
  p:first-child {
