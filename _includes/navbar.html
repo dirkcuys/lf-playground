@@ -4,10 +4,12 @@
 <nav class="max-lg:collapse border-b border-[#e0e0e0] bg-white shadow-sm w-full rounded-md">
   <input id="navbar-1-toggle" class="peer hidden" type="checkbox" />
   <label for="navbar-1-toggle" class="fixed inset-0 hidden max-lg:peer-checked:block"></label>
-  <div class="collapse-title navbar px-4 py-0">
+  <div class="collapse-title navbar px-6 py-0">
     <div class="navbar-start">
       <div class="flex items-center gap-2 md:gap-3 py-3 pr-3 md:pr-7 mr-2 border-r border-[#e0e0e0]">
-        <img src="/assets/img/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-7 md:h-9 w-auto">
+        <a href="{{site.baseurl}}/" class="p-0!">
+          <img src="{{site.baseurl}}/assets/img/LibraryFutures_400px(1).289d317c.png" alt="Library Futures" class="h-7 md:h-9 w-auto">
+        </a>
       </div>
 
       <ul class="menu menu-horizontal px-1 hidden lg:flex">
@@ -25,7 +27,7 @@
                       {% assign nav_item = search_nav %}
                     {% endif %}
                   {% endfor %}
-                  <li><a href="{{nav_item.link}}">{{nav_item.title}}</a></li>
+                  <li><a href="{{site.baseurl}}{{nav_item.link}}">{{nav_item.title}}</a></li>
                 {% endfor %}
               </ul>
             </details>
